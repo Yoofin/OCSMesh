@@ -343,14 +343,25 @@ class HfunRaster(BaseHfun, Raster):
                 dim1 = win.width
                 dim2 = win.height
 
-                tria3 = np.empty((dim1-1, dim2-1), dtype=jigsaw_msh_t.TRIA3_t)
+                tria3 = np.empty(
+                    (dim1 - 1, dim2 - 1),
+                    dtype=jigsaw_msh_t.TRIA3_t,
+                )
                 index = tria3["index"]
-                
-                i = np.arange(dim1-1, dtype = jigsaw_msh_t.INDEX_t)[:, None]
-                j = np.arange(dim2-1, dtype = jigsaw_msh_t.INDEX_t)[None, :]
-                index[:, :, 0] =  i      +  j*dim1
-                index[:, :, 1] = (i + 1) +  j*dim1
-                index[:, :, 2] = (i + 1) + (j + 1)*dim1
+
+                i = np.arange(
+                    dim1 - 1,
+                    dtype=jigsaw_msh_t.INDEX_t,
+                )[:, None]
+                j = np.arange(
+                    dim2 - 1,
+                    dtype=jigsaw_msh_t.INDEX_t,
+                )[None, :]
+
+                index[:, :, 0] = i     + j * dim1
+                index[:, :, 1] = (i+1) + j * dim1
+                index[:, :, 2] = (i+1) + (j+1) * dim1
+
                 hfun.tria3 = tria3.ravel()
                 
                 gc.collect()
