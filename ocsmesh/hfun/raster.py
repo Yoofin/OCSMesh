@@ -346,8 +346,8 @@ class HfunRaster(BaseHfun, Raster):
                 tria3 = np.empty((dim1-1, dim2-1), dtype=jigsaw_msh_t.TRIA3_t)
                 index = tria3["index"]
                 
-                i = np.arange(dim1-1, dtype = jigsaw_msh_t.INDEX_t)[:, None]   (dim1-1,1)
-                j = np.arange(dim2-1, dtype = jigsaw_msh_t.INDEX_t)[None, :]   (1,dim2-1)
+                i = np.arange(dim1-1, dtype = jigsaw_msh_t.INDEX_t)[:, None]
+                j = np.arange(dim2-1, dtype = jigsaw_msh_t.INDEX_t)[None, :]
                 index[:, :, 0] =  i      +  j*dim1
                 index[:, :, 1] = (i + 1) +  j*dim1
                 index[:, :, 2] = (i + 1) + (j + 1)*dim1
